@@ -1,0 +1,14 @@
+h1 {
+    color: blue;
+    font-size: 40px;
+    font-family: sans-serif;
+}
+
+
+.btn { 
+    background-color: rgb(28, 150, 187);
+    color: white;
+    border-radius: 100px;
+    padding: 10px;
+    border: none;
+}

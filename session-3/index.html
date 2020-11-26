@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript</title>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <textarea id="tweetMessage" class="w-full border rounded bg-white shadow" cols="30" rows="5" placeholder="Your tweet.."></textarea>
+        <button id="tweetButton" onclick="tweet()" class="bg-blue-500 rounded px-4 py-1 text-white" onclick="submit()">Tweet</button>
+
+        <p id="errorMessage" class="hidden text-red-500 font-bold"></p>
+
+        <section id="allTweets" class="mt-4">
+            <h2>All tweets</h2>
+        </section>
+
+        <script src="./app.js"></script>
+    </body>
+</html>
