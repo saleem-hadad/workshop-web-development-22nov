@@ -1,0 +1,19 @@
+{
+  "name": "session-5",
+  "version": "1.0.0",
+  "description": "Building Twitter clone",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss src/app.css -o public/app.css"
+  },
+  "author": "Saleem Hadad",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^10.0.4",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.0.1"
+  },
+  "devDependencies": {
+    "postcss-cli": "^8.3.0"
+  }
+}

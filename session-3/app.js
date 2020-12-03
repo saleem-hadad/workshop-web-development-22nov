@@ -1,3 +1,14 @@
+class Tweet {
+    constructor(message, user) {
+        this.message = message;
+        this.user = user;
+    }
+
+    formatMessage() {
+        return "User: " + this.user + " posted: " + this.message;
+    }
+}
+
 function tweet() {
     // 1. read what a user inserted in the textarea
     let tweetMessageElement = document.getElementById('tweetMessage');
@@ -25,10 +36,13 @@ function tweet() {
 
     document.getElementById('errorMessage').classList.add('hidden');
 
+    // create the tweet object
+    let tweet = new Tweet(tweetMessage, 'saleem');
+
     // 3. Add the content of that varialbe to the page as a card
     let newTweet = document.createElement('p');
     newTweet.classList = "p-4 border rounded mb-4";
-    newTweet.innerText = tweetMessage;
+    newTweet.innerText = tweet.formatMessage();
     document.getElementById('allTweets').appendChild(newTweet);
 
     // 4. Empty the textarea 
