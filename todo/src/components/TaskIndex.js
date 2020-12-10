@@ -1,25 +1,8 @@
-import React, { useState } from 'react';
-
 import Task from './Task';
 
-function TaskIndex() {
-    const [tasks, setTasks] = useState([
-        {
-            title: "Learn HTML",
-            completed: true
-        },
-        {
-            title: "Learn React",
-            completed: false
-        },
-        {
-            title: "Learn CSS",
-            completed: true
-        }
-    ]);
-
-    const tasksList = tasks.map(task => {
-        return <Task title={task.title} completed={task.completed} />
+function TaskIndex(props) {
+    const tasksList = props.tasks.map(task => {
+        return <Task key={task.id} task={task} buttonClicked={(id) => props.buttonClicked(id)} />
     })
     
     return (
