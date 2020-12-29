@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import TaskIndex from '../components/TaskIndex';
 import TaskCreate from '../components/TaskCreate';
 
 function Tasks() {
     const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/tasks")
+            .then(response => {
+                setTasks(response.data.tasks);
+            })
+    })
 
     function markAsCompleted(id) {
         let newTasks = tasks.map(task => {
@@ -19,20 +27,22 @@ function Tasks() {
     }
 
     function createNewTask(title) {
-        // let newTasks = [...tasks];
-        // newTasks.push({
-        //     id: '_' + Math.random().toString(36).substr(2, 9),
-        //     title: title,
-        //     completed: false
-        // });
-        // setTasks(newTasks);
+        // send the data to the backend to save it
+        fetch("http://localhost:3000/tasks", {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: title
+            })
+        });
 
         setTasks([
             ...tasks, 
             {
                 id: '_' + Math.random().toString(36).substr(2, 9),
                 title: title,
-                completed: false
+                is_completed: false
             }
         ])
     }
