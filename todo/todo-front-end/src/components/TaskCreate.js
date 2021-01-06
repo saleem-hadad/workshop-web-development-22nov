@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux'
+import { addTasks } from '../actions/tasks'
 
 function TaskCreate(props) {
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState('');
 
     function createNewTask() {
-        if(title.length > 0) {
-            props.createNewTask(title);
-            setTitle("");
-        }
+        if(title == '') { return; }
+
+        // send the data to the backend to save it
+        axios.post("http://localhost:3000/tasks", {title})
+            .then(response => {
+                props.addTasks(response.data.task)
+            })
+
+        setTitle('');
     }
 
     return (
@@ -23,4 +31,7 @@ function TaskCreate(props) {
     )
 }
 
-export default TaskCreate;
+  
+const mapDispatchToProps = { addTasks }
+
+export default connect(null, mapDispatchToProps)(TaskCreate)

@@ -73,9 +73,20 @@ app.get('/tasks', (req, res) => {
 app.post('/tasks', (req, res) => {
     let title = req.body.title;
 
-    database.query(`INSERT INTO tasks (title) VALUES ('${title}');`);
+    // inset to db
+    database.query(`INSERT INTO tasks (title) VALUES ('${title}');`, (error, result) => {
+        if(error) { 
+            throw new Error;
+        }
 
-    res.json({message: "Task saved"});
+        database.query(`select tasks.*, users.name from tasks join users on tasks.user_id = users.id where tasks.id = ${result.insertId}`, (error, result) => {
+            if(error) { 
+                throw new Error;
+            }
+
+            res.json({task: result});
+        })
+    });
 })
 
 app.listen(3000, () => {

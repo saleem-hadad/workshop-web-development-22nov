@@ -1,4 +1,5 @@
 import Task from './Task';
+import { connect } from 'react-redux'
 
 function TaskIndex(props) {
     const tasksList = props.tasks.map(task => {
@@ -12,4 +13,11 @@ function TaskIndex(props) {
     )
 }
 
-export default TaskIndex; 
+
+const mapStateToProps = (state) => {
+    return {
+      tasks: state,
+    }
+}
+  
+export default connect(mapStateToProps, null)(TaskIndex)

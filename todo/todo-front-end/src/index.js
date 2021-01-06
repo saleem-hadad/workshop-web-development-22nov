@@ -2,11 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+// create reducer
+const tasksReducer = (state = [], action) => {
+  if(action.type == 'ADD_TASK') {
+    if(Array.isArray(action.payload)) {
+      return [...state, ...action.payload]
+    }
+    
+    return [...state, action.payload]
+  }
+
+  return state;
+}
+
+// create store
+const store = createStore(tasksReducer);
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
